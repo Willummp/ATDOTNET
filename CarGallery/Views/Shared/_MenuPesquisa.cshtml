@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@inject CarGalleryContext context
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Carros
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/Home/Search">Todos</a></li>
+        <li><hr class="dropdown-divider"></li>
+        @foreach (var fabricante in context.Fabricantes.ToList())
+        {
+            <li><a class="dropdown-item" href="/Home/Search?id=@fabricante.Id">@fabricante.Nome</a></li>
+        }
+    </ul>
+</li>

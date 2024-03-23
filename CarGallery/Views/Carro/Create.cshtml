@@ -1,0 +1,59 @@
+﻿@model CarGallery.Models.Carro
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Adicionar Carro</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label">Nome</label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescricaoCurta" class="control-label">Descrição Curta</label>
+                <input asp-for="DescricaoCurta" class="form-control" />
+                <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescricaoLonga" class="control-label">Descrição Longa</label>
+                <textarea asp-for="DescricaoLonga" class="form-control"></textarea>
+                <span asp-validation-for="DescricaoLonga" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Selecione a Imagem</label>
+                <input type="file" accept="image/*" class="form-control" id="imageFile" name="imageFile" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Fabricante</label>
+                <select name="idFabricante" id="idFabricante" class="form-control">
+                    <option value="">Selecione</option>
+                    @foreach (Fabricante item in ViewBag.fabricantes)
+                    {
+                        <option value="@item.Id">@item.Nome</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Criar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

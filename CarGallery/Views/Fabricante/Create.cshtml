@@ -1,0 +1,37 @@
+﻿@model CarGallery.Models.Fabricante
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Fabricante</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label">Nome</label>
+                <input asp-for="Nome" class="form-control" required>
+                <div class="invalid-feedback">Por favor, insira um nome.</div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label">Descrição</label>
+                <input asp-for="Descricao" class="form-control">
+                <div class="invalid-feedback">Por favor, insira uma descrição.</div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Criar</button>
+        </form>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
