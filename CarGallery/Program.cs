@@ -40,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Search}/{id?}"); // Defina a rota padrão para Home/Search
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // Defina a rota padrão para Home/Search
 
 app.Run();

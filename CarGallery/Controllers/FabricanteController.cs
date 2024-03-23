@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarGallery;
 using CarGallery.Models;
@@ -52,8 +49,6 @@ namespace CarGallery.Controllers
         }
 
         // POST: Fabricante/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Descricao")] Fabricante fabricante)
@@ -84,8 +79,6 @@ namespace CarGallery.Controllers
         }
 
         // POST: Fabricante/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao")] Fabricante fabricante)
@@ -144,6 +137,12 @@ namespace CarGallery.Controllers
             var fabricante = await _context.Fabricantes.FindAsync(id);
             if (fabricante != null)
             {
+                // Exclui todos os carros associados ao fabricante
+                var carros = await _context.Carros
+                    .Where(c => c.FabricanteId == id)
+                    .ToListAsync();
+                _context.Carros.RemoveRange(carros);
+
                 _context.Fabricantes.Remove(fabricante);
             }
 

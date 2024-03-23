@@ -1,12 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<style>
+﻿<style>
     body {
-        background-color: #f8f9fa; /* Cor de fundo cinza claro */
+        background-color: #f8f9fa;
     }
 
     .container {
@@ -15,31 +9,74 @@
 
     .card {
         margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        height: 420px;
+        color: white;
+        text-decoration: none;
+        border: 2px solid transparent;
+        overflow: hidden; /* Adiciona um overflow para o card para aplicar o efeito de desfoque somente na parte inferior */
     }
 
+        .card:hover {
+            border-color: #007bff;
+        }
+
     .card-img-top {
-        height: 200px; /* Altura da imagem */
-        object-fit: cover; /* Ajuste da imagem para cobrir o espaço */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
     }
 
     .card-title {
-        font-size: 1.25rem; /* Tamanho do título */
+        font-size: 5rem;
+        font-weight: 700;
         margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1; /* Certifica-se de que o texto está na frente do efeito de desfoque */
     }
 
     .card-text {
-        color: #6c757d; /* Cor do texto */
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 600;
+        position: relative;
+        z-index: 1; /* Certifica-se de que o texto está na frente do efeito de desfoque */
+    }
+
+    .card-body::after {
+        content: ""; /* Cria um pseudo-elemento para aplicar o efeito de desfoque */
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 60%;
+        border-radius: 10px 0 0 0; /* Ajuste conforme necessário */
+        height: 40%; /* Altura do desfoque, ajuste conforme necessário */
+        background: rgba(0, 0, 0, 0.2); /* Cor e opacidade do desfoque */
+        backdrop-filter: blur(10px); /* Aplica o efeito de desfoque */
+        z-index: 0; /* Garante que o efeito de desfoque esteja atrás do texto */
     }
 
     .btn-primary {
-        background-color: #007bff; /* Cor do botão primário */
-        border-color: #007bff; /* Cor da borda do botão primário */
+        background-color: #007bff;
+        border-color: #007bff;
     }
 
         .btn-primary:hover {
-            background-color: #0056b3; /* Cor do botão primário em hover */
-            border-color: #0056b3; /* Cor da borda do botão primário em hover */
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
 </style>
 
@@ -48,15 +85,15 @@
         @foreach (Carro item in ViewBag.Carros)
         {
             <div class="col">
-                <div class="card" style="width: 18rem;">
+                <a href="/Carro/Detail/@item.Id" class="card">
                     <img src="@item.Imagem" class="card-img-top" alt="Imagem do carro">
                     <div class="card-body">
                         <h5 class="card-title">@item.Nome</h5>
                         <p class="card-text">@item.DescricaoCurta</p>
-                        <a href="/Carro/Detail/@item.Id" class="btn btn-primary">Ver detalhes</a>
                     </div>
-                </div>
+                </a>
             </div>
         }
     </div>
 </div>
+

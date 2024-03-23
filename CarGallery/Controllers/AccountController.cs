@@ -68,5 +68,10 @@ namespace CarGallery.Controllers
 
             return RedirectToAction("Login");
         }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model CarGallery.Models.Carro
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-light">
+                <img src="@Model.Imagem" alt="@Model.Imagem" class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title font-weight-bold">@Model.Nome</h3>
+                    <p class="card-text lead">@Model.DescricaoCurta</p>
+                    <p class="card-text">@Model.DescricaoLonga</p>
+                    <a href="/" class="btn btn-outline-light">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

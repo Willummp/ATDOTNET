@@ -1,28 +1,13 @@
-﻿@model IEnumerable<CarGallery.Models.Carro>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
     ViewData["Title"] = "Home Page";
 }
 
-@if (Model != null)
-{
-    <div class="row">
-        @foreach (var carro in Model)
-        {
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img src="@carro.Imagem" class="card-img-top" alt="Imagem do carro">
-                    <div class="card-body">
-                        <h5 class="card-title">@carro.Nome</h5>
-                        <p class="card-text">@carro.DescricaoCurta</p>
-                        <a href="@Url.Action("Details", "Carro", new { id = carro.Id })" class="btn btn-primary">Detalhes</a>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-}
-else
-{
-    <p>Nenhum carro encontrado.</p>
-}
+
+
+<div class="text-center">
+    <h1 class="display-4">Galeria de Carros</h1>
+    <p class="lead">O melhor lugar para você encontrar o carro dos seus sonhos! 🐱‍👤</p>
+</div>
